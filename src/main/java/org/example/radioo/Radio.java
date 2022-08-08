@@ -1,25 +1,24 @@
 package org.example.radioo;
 
 public class Radio {
-    int currentStation;
+    public int currentStation;
 
-    int currentVolume;
+    public int currentVolume;
+    public int getCurrentVolume() { return currentVolume; }
 
     public int getCurrentStation() {
         return currentStation;
     }
 
-    public void setToMaxStation() {
-        currentStation = 9;
-    }
+    public int getToMaxStation() { return currentStation = 9; }
 
-    public void setToMinStation() {
-        currentStation = 0;
+    public int getToMinStation() {
+        return currentStation = 0;
     }
 
     public void Next(int newCurrentStation) {
         if (newCurrentStation > 9) {
-            setToMinStation();
+            getToMinStation();
         } else {
             currentStation = newCurrentStation + 1;
         }
@@ -27,16 +26,11 @@ public class Radio {
 
     public void Prev(int newCurrentStation) {
         if (newCurrentStation < 0) {
-            setToMaxStation();
+            getToMaxStation();
         } else {
             currentStation = newCurrentStation - 1;
         }
     }
-
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
     public void increaseVolume(int newCurrentVolume) {
         if (newCurrentVolume < 10) {
             currentVolume = newCurrentVolume + 1;
@@ -46,11 +40,13 @@ public class Radio {
     public void decreaseVolume(int newCurrentVolume) {
         if (newCurrentVolume < 10) {
             currentVolume = newCurrentVolume - 1;
+        } else {
+            currentVolume = 0;
         }
     }
 
-    public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        public void setCurrentVolume(int newCurrentVolume) {
+        if (newCurrentVolume <= 0) {
             return;
         }
         if (newCurrentVolume > 10) {
