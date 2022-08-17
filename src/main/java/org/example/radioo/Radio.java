@@ -2,14 +2,13 @@ package org.example.radioo;
 
 public class Radio {
     private int amountStation = 10;
-    private int maxStation = amountStation - 1;
-    private int minStation = 0;
-    private int currentStation = minStation;
+    private int currentStation = 0;
+    private int currentVolume = 0;
 
-    public Radio(int amountStation) {
+    public Radio(int amountStation, int currentStation, int currentVolume) {
         this.amountStation = amountStation;
-
-        this.maxStation = amountStation - 1;
+        this.currentStation = currentStation;
+        this.currentVolume = currentVolume;
     }
 
     public Radio() {
@@ -19,45 +18,63 @@ public class Radio {
         return currentStation;
     }
 
-    public int getToMaxStation() {
-        return maxStation;
+    public void setCurrentStation(int newCurrentStation) {
+        if (newCurrentStation < 0) {
+            return;
+        }
+        if (newCurrentStation > amountStation - 1) {
+            return;
+        }
+        currentStation = newCurrentStation;
     }
 
-    public int getToMinStation() {
-        return minStation;
-    }
-
-    public int getToAmountStation() {
+    public int getAmountStation() {
         return amountStation;
     }
 
-
-    public int Next(int newCurrentStation) {
-        if (newCurrentStation <= maxStation) {
-            currentStation = newCurrentStation + 1;
-        } else {
-            currentStation = 0;
-        }
-        return currentStation;
+    public int getCurrentVolume() {
+        return currentVolume;
     }
 
-    public int Prev(int newCurrentStation) {
-        if (newCurrentStation <= maxStation) {
-            currentStation = newCurrentStation -1;
-        } else {
-            currentStation = 0;
+    public void setCurrentVolume(int currentVolume) {
+        if (currentVolume < 0) {
+            return;
         }
-        return currentStation ;
+        if (currentVolume > 100) {
+            return;
+        }
+        this.currentVolume = currentVolume;
     }
 
-    public int setCurrentStation(int newCurrentStation) {
-        if (newCurrentStation < 0) {
-            return getToMaxStation();
+    public void Next() {
+        if (currentStation >= amountStation - 1) {
+            currentStation = 0;
+        } else {
+            currentStation = currentStation + 1;
         }
-        if (newCurrentStation > maxStation) {
-            return getToMinStation();
-        }
+    }
 
-        return newCurrentStation;
+    public void Prev() {
+        if (currentStation <= 0) {
+            currentStation = amountStation - 1;
+        } else {
+            currentStation = currentStation - 1;
+        }
+    }
+
+    public void IncreaseVolume() {
+        if (currentVolume == 100) {
+            currentVolume = 0;
+        } else {
+            currentVolume = currentVolume + 1;
+        }
+    }
+
+    public void DecreaseVolume() {
+        if (currentVolume == 0) {
+            currentVolume = 0;
+        } else {
+            currentVolume = currentVolume - 1;
+        }
     }
 }
