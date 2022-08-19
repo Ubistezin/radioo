@@ -5,10 +5,8 @@ public class Radio {
     private int currentStation = 0;
     private int currentVolume = 0;
 
-    public Radio(int amountStation, int currentStation, int currentVolume) {
+    public Radio(int amountStation) {
         this.amountStation = amountStation;
-        this.currentStation = currentStation;
-        this.currentVolume = currentVolume;
     }
 
     public Radio() {

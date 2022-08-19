@@ -16,11 +16,9 @@ public class RadioTest {
 
     @Test
     public void testParam() {
-        Radio radio = new Radio(5, 7, 8);
+        Radio radio = new Radio(5);
 
         Assertions.assertEquals(5, radio.getAmountStation());
-        Assertions.assertEquals(7, radio.getCurrentStation());
-        Assertions.assertEquals(8, radio.getCurrentVolume());
     }
 
     @Test
